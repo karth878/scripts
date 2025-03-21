@@ -76,9 +76,9 @@ else
 fi
 
 # Prepare for installation
-print_color "green" "Step 1: Wiping the entire disk ${DISK} safely"
-# Perform a secure wipe of the entire disk
-dd if=/dev/zero of="${DISK}" bs=1M status=progress
+print_color "green" "Step 1: Safely wiping the entire disk ${DISK} using shred"
+# Perform a fast and safe wipe of the entire disk
+shred -v -n 1 "${DISK}"
 
 print_color "green" "Step 2: Wiping disk signatures from ${DISK}"
 wipefs -a "${DISK}"
